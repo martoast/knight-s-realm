@@ -20,8 +20,18 @@ class Animation {
     }
   
     update(deltaTime) {
+        // Special case for single-frame animations (like our idle)
+        if (this.frameCount <= 1) {
+            this.frameIndex = 0;
+            return;
+        }
+        
         // If animation is finished and doesn't loop, do nothing
-        if (this.finished && !this.loop) return;
+        if (this.finished && !this.loop) {
+            // Ensure we stay on the last frame
+            this.frameIndex = this.frameCount - 1;
+            return;
+        }
   
         // Accumulate time since last update
         this.timeSinceLastFrame += deltaTime;
@@ -43,6 +53,7 @@ class Animation {
                     // Stay on last frame and mark as finished
                     this.frameIndex = this.frameCount - 1;
                     this.finished = true;
+                    console.log(`Animation "${this.name}" finished`);
                 }
             }
         }
@@ -140,6 +151,7 @@ class Animation {
         this.frameIndex = 0;
         this.timeSinceLastFrame = 0;
         this.finished = false;
+        console.log(`Animation "${this.name}" reset`);
     }
 }
   

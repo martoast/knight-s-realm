@@ -1,9 +1,9 @@
 // Simplified UI
 const ui = {
+    messageQueue: [], // Initialize messageQueue here to ensure it exists before init is called
+    messageTimeout: null,
+    
     init: function(player) {
-        this.messageQueue = [];
-        this.messageTimeout = null;
-        
         // Create a simple message display
         const messageDisplay = document.createElement('div');
         messageDisplay.id = 'message-display';
@@ -42,6 +42,11 @@ const ui = {
     showMessage: function(message) {
         console.log(message);
         
+        // Ensure messageQueue exists
+        if (!this.messageQueue) {
+            this.messageQueue = [];
+        }
+        
         this.messageQueue.push(message);
         
         if (!this.messageTimeout) {
@@ -50,7 +55,7 @@ const ui = {
     },
     
     processMessageQueue: function() {
-        if (this.messageQueue.length === 0) {
+        if (!this.messageQueue || this.messageQueue.length === 0) {
             this.messageTimeout = null;
             return;
         }

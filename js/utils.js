@@ -52,8 +52,6 @@ const utils = {
         const animationFrameCounts = {
           "Walk.png": 8,     // Correct: 8 frames
           "Attack1.png": 5,  // Updated: 4 frames
-          "Attack2.png": 4,  // Assuming similar to Attack1
-          "Attack3.png": 4,  // Assuming similar to Attack1
           "Idle.png": 4,     // Correct: 4 frames 
           "Run.png": 7,      // Updated: 7 frames
           "RunAttack.png": 6, // Correct: 6 frames
